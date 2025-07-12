@@ -1,3 +1,5 @@
 # game
 
-Alexander is locked in!
+## Guidelines
+
+- Always use english everywhere.
