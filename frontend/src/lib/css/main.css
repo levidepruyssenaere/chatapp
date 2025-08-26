@@ -1,0 +1,147 @@
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMonoNL-Thin.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+    --color-bg: #1A1F24;
+}
+body {
+    font-family: 'JetBrains Mono';
+    background-color: var(--color-bg);
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+}
+
+/* CSS Reset - Remove all default styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1, h2, h3, h4, h5, h6,
+p,
+ul, ol, dl,
+figure,
+blockquote,
+fieldset,
+legend {
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography */
+html {
+  /* Use relative units for accessibility */
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+}
+
+/* Images */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Form elements */
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Remove default button focus style */
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Remove transitions on page load */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Remove Svelte-specific styling */
+:global(html), :global(body) {
+  position: static;
+  overflow: visible;
+}
+
+/* Ensure body fills viewport height */
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/* Prevent horizontal overflow */
+body {
+  overflow-x: hidden;
+}
+
+/* Svelte's :global selector sometimes adds unexpected styling */
+:global(*) {
+  margin: inherit;
+  padding: inherit;
+  font: inherit;
+}
+
+/* Reset for common elements */
+hr {
+  border: 0;
+  height: 1px;
+  background: #ddd;
+}
+
+/* Remove spinners from number inputs */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
