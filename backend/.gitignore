@@ -1,37 +1,30 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+# === Rust ===
+/target/
+**/*.rs.bk
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# === Cargo ===
+/Cargo.lock  # Ignore if this is a library crate
+/.cargo/
+/.cargo/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+# === Editor/IDE files ===
+**/*.swp
+**/*.swo
+**/*.bak
+*.log
+*.tmp
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
+# === VSCode ===
 .vscode/
+*.code-workspace
+
+# === JetBrains (IntelliJ, CLion, etc.) ===
+.idea/
+*.iml
+
+# === MacOS ===
+.DS_Store
+
+# === Node/npm (if you're mixing frontend) ===
+node_modules/
+dist/
