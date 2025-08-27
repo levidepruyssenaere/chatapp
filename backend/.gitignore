@@ -28,3 +28,4 @@
 # === Node/npm (if you're mixing frontend) ===
 node_modules/
 dist/
+.idea
