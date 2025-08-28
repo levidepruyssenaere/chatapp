@@ -2,6 +2,7 @@
 mod api;
 mod db;
 mod models;
+mod services;
 
 use mongodb::{Client, options::ClientOptions};
 
@@ -15,6 +16,6 @@ async fn rocket() -> _ {
 
     rocket::build()
         .manage(db)
-        .mount("/", routes![api::health::health])
-        .mount("/public-chats", routes![api::chats::get_public_chats])
+        .mount("/health", routes![api::health::health])
+        .mount("/public", routes![api::chats::get_public_chats])
 }
