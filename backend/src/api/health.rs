@@ -1,6 +1,6 @@
 use rocket::http::Status;
 
-#[get("/")]
+#[get("/health")]
 pub async fn health() -> Status {
     Status::Ok
 }

@@ -1,5 +1,4 @@
 use chrono::Local;
-use rocket::serde::json::Json;
 use crate::models::message::Message;
 
 pub fn get_public_mock_messages() -> Vec<Message> {
