@@ -4,8 +4,6 @@ use mongodb::Database;
 use rocket::State;
 use crate::db::users::get_user_by_email;
 use crate::models::claims::Claims;
-use crate::models::user;
-use crate::models::user::User;
 
 const SECRET: &[u8] = b"09120312";
 pub fn generate_jwt(email: &String) -> String {
