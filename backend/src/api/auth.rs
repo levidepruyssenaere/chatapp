@@ -1,8 +1,10 @@
+use mongodb::Database;
 use rocket::http::Status;
 use rocket::response::status;
 use rocket::serde::json::Json;
+use rocket::State;
 use serde::Deserialize;
-use crate::services::auth::generate_jwt;
+use crate::services::auth::{authenticate, generate_jwt};
 
 #[derive(Deserialize)]
 pub struct LoginRequest {
@@ -11,11 +13,9 @@ pub struct LoginRequest {
 }
 
 #[post("/login", format = "json", data = "<login>")]
-pub fn login(login: Json<LoginRequest>) -> Result<String, status::Custom<String>> {
-    if login.email != "jan@freedombox.be" {
-        return Err(status::Custom(Status::Unauthorized, "Unauthorized".into()));
+pub async fn login(db: &State<Database>, login: Json<LoginRequest>) -> status::Custom<String> {
+    match authenticate(db, &login.email, &login.password).await {
+        Ok(token) => status::Custom(Status::Ok, token),
+        Err(e) => status::Custom(Status::InternalServerError, e)
     }
-
-    // Normally you'd verify credentials here
-    Ok(generate_jwt(&login.email))
 }

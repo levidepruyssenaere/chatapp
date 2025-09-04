@@ -1,6 +1,11 @@
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use jsonwebtoken::{encode, EncodingKey, Header, errors::Result as JWTResult, DecodingKey, Validation, decode};
+use mongodb::Database;
+use rocket::State;
+use crate::db::users::get_user_by_email;
 use crate::models::claims::Claims;
+use crate::models::user;
+use crate::models::user::User;
 
 const SECRET: &[u8] = b"09120312";
 pub fn generate_jwt(email: &String) -> String {
@@ -27,4 +32,17 @@ pub fn verify_jwt(token: &str) -> JWTResult<Claims> {
     )?;
 
     Ok(token_data.claims)
+}
+
+pub async fn authenticate(db: &State<Database>, email: &String, password: &String) -> Result<String, String> {
+    match get_user_by_email(db, email).await {
+        Ok(user) => {
+            if user.password == *password {
+                Ok(generate_jwt(email))
+            } else {
+                Err("Invalid Password".to_string())
+            }
+        },
+        Err(e) => Err(e),
+    }
 }
