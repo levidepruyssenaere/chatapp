@@ -46,5 +46,5 @@ async fn rocket() -> _ {
 
     rocket::build()
         .manage(db)
-        .mount("/", routes![api::auth::login, api::chats::get_public_chats, api::health::health])
+        .mount("/", routes![api::auth::login, api::auth::register, api::chats::get_public_chats, api::health::health])
 }
